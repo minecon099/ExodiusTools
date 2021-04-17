@@ -1,8 +1,12 @@
 #Bot made by minecon09
-#Version released at April 13, 2020
+#Version released at April 17, 2020
 
-#Note that the Bot Token is replaced as Token goes here! so you can test with your OWN TOKEN
-#Channel id is replaced as ChannelID so you can replace it with your OWN CHANNEL ID
+#Note that the Bot Token is replaced as "Token goes here!" so you can test with your OWN TOKEN
+#Channel id is replaced as "Main Channel ID here" so you can replace it with your OWN CHANNEL ID
+#And as last stuff, you can change the messages that are in spanish so you can place your own
+
+#To import packages in cmd you must use pip install discord
+#Might not work with old PCs!
 
 #Import Packages
 import discord
