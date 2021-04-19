@@ -8,6 +8,9 @@ Some of the things that you may find confusing are easily explainable
 
 This bot was made with the help of a fellow youtuber I will explain later when my code is finished and inspirations from @ElCholoGamer, a guy that made his own repository with the Josuke bot, made with Typescript and other stuff which inspired me on making this with the help of Discord.py
 
+NEW! 
+Now you can clone this repository in a Git Bash with *git clone https://github.com/minecon099/DJtetra/*
+
 Credits (A.K.A People that helped me a bunch on this)
 - Inspiration by @ElCholoGamer
 - Discord.py repository https://github.com/Rapptz/discord.py
