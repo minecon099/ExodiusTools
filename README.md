@@ -18,9 +18,9 @@ Minecon099 👷‍♂️
 Note: My computer has been disabled temporarily for unknown reasons, so it might take a while till the next update arrives so please be a bit patient while I solve this issue!
 
 - This update contains the following examples:
-  - Set bot prefix to avoid unintended bot summoning
-  - Commands with message/embed message
+  - Set bot prefix to avoid unintended bot summoning ✔️
+  - Commands with message/embed message ✔️
   - Warn, Ban and Mute Commands
-  - A GitHub link so you can paste your own issues :)
+  - A GitHub link so you can paste your own issues :) ✔️
       
 No further said! Minecon099 - Date: 10:01 - April 15th 2021
