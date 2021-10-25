@@ -1,70 +1,152 @@
-#Bot made by minecon09
-#Version released at April 17, 2020
+#Import modules, in this case we will need Discord, Discord commands handler, Dadjokes (For joke command), Random for 8ball 
+#command, Requests for APIs usage and JSON for APIs responses reading
 
-#Note that the Bot Token is replaced as "Token goes here!" so you can test with your OWN TOKEN
-#Channel id is replaced as "Main Channel ID here" so you can replace it with your OWN CHANNEL ID
-#And as last stuff, you can change the messages that are in spanish so you can place your own
+#You may also add more modules if you want to add even more things to your bot
 
-#To import packages in cmd you must use pip install discord
-#Might not work with old PCs!
+#Remember to do pip install (module) before running this or you won't be able to start your bot!
 
-#Import Packages
 import discord
+import random
+import requests
+import json
+from dadjokes import Dadjoke
 from discord.ext import commands
 
-#The bot itself
-client = commands.Bot(command_prefix="tt!")
+#The bot's prefix, you may change it at your own will
+client = commands.Bot(command_prefix = 'ex!')
 
-#Print a succesful execution if no exeptions were raised:
-print("The bot has been successfully settled in discord!")
+#Using the ZenQuotes API to request a quote from the API
+def get_quote():
+    response = requests.get("https://zenquotes.io/api/random")
+    json_data = json.loads(response.text)
+    quote = json_data[0]['q'] + " -" + json_data[0]['a']
+    return(quote)
 
-#Actions:
-#Prefix usage example:
-@client.command(name="version")
-async def version(context):
-        
-     general_channel = client.get_channel("Main ID channel here too")
-        
-     embed1 = discord.Embed(title="Versión Actual:", description="DJ Tetra está en la versión ALPHA 1.1", color=0x00ff00)
-     embed1.add_field(name="Versión por código:", value="1.0.0", inline=False)
-     embed1.add_field(name="Fecha de lanzamiento", value="17 de Abril del 2021", inline=False)
-     embed1.set_footer(text="Visita mi Página de desarrollo con tt!github")
-     embed1.set_author(name="Pogamepayer#3492")
-
-     await context.message.channel.send(embed=embed1)
-    
-#Upon bot connects
+#Print that the bot has logged in successfully if there are no errors during the bot's startup
 @client.event
 async def on_ready():
+    print('I have logged on Discord with Sucess!')
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.competing, name="against DayMines",   ))
 
-    general_channel = client.get_channel("Main channel ID Goes here as well")
+#The classic one, ping pong command
+@client.command(aliases=['p'])
+async def ping(ctx):
+    await ctx.send('Pong!')
 
-    await general_channel.send("Me he conectado con éxito al servidor :green_circle:")
+#8ball command using the random module and Glowstik's 8ball answers (modified for no self-promo)
+@client.command(aliases=['8ball', '8b'])
+async def _8ball(ctx, *, question):
+    responses = [
+        'Hell no.',
+        'Prolly not.',
+        'Idk bro.',
+        'Prob.',
+        'Hell yeah my dude.',
+        'It is certain.',
+        'It is decidedly so.',
+        'Without a Doubt.',
+        'Yes - Definitaly.',
+        'You may rely on it.',
+        'As i see it, Yes.',
+        'Most Likely.',
+        'Outlook Good.',
+        'Yes!',
+        'No!',
+        'Signs a point to Yes!',
+        'Reply Hazy, Try again.',
+        'idk',
+        'Better not tell you know.',
+        'Cannot predict now.',
+        'Concentrate and ask again.',
+        "Don't Count on it.",
+        'My reply is No.',
+        'My sources say No.',
+        'Outlook not so good.',
+        'Very Doubtful']
+    await ctx.send(f':8ball: Question: {question}\n:8ball: Answer: {random.choice(responses)}')
 
-#Upon bot disconnects
-@client.event
-async def on_disconnect():
-     general_channel = client.get_channel("Main channel ID Goes here too!")
-
-     await general_channel.send("Me estoy desconectando, Buenas Noches :red_circle:")
-
-#Upon specific message ("Version")
-@client.event
-async def on_message(message):
+#Kick a member
+@client.command()
+async def kick(ctx, member:discord.Member, *, reason=None):
+    if (not ctx.author.guild_permissions.kick_members):
+        await ctx.send('You require the permission: ``Kick Members``')
     
-    if message.content == "version":
-        general_channel = client.get_channel("Main channel ID Goes here!")
-        
-        embed1 = discord.Embed(title="Versión Actual:", description="DJ Tetra está en la versión ALPHA 1.1", color=0x00ff00)
-        embed1.add_field(name="Versión por código:", value="1.0.0", inline=False)
-        embed1.add_field(name="Fecha de lanzamiento", value="17 de Abril del 2021", inline=False)
-        embed1.set_footer(text="Visita mi Página de desarrollo con tt!github")
-        embed1.set_author(name="Pogamepayer#3492")
+    else:
+        await member.kick(reason=reason)
+        await ctx.send(f'{member.mention} has been kicked!')
 
-        await general_channel.send(embed=embed1)
+#Ban a user (or yeet it for more simpler terms)
+@client.command(aliases=['yeet'])
+async def ban(ctx, member:discord.Member, *, reason=None):
+    if (not ctx.author.guild_permissions.ban_members):
+        await ctx.send('You require the permission: ``Ban Members``')
+
+    else:
+        await member.ban(reason=reason)
+        await ctx.send(f'{member.mention} has been yeeted!')
+
+#Unban a user (or forgive him)
+@client.command(aliases=['forgive'])
+async def unban(ctx, *, member):
+    if (not ctx.author.guild_permissions.ban_members):
+        await ctx.send('You require the permission: ``Ban Members``')
     
-    #Enables compartibility between commands and messages 
-    await client.process_commands(message)
+    else:
+        banned_users = await ctx.guild.bans()
+        member_name, member_discriminator = member.split('#')
 
-#Run the bot:
-client.run("Token goes here!")
+        for ban_entry in banned_users:
+            user = ban_entry.user
+
+            if(user.name, user.discriminator) == (member_name, member_discriminator):
+                await ctx.guild.unban(user)
+                await ctx.send(f'Unbanned {user.mention}')
+                return
+
+#Purge the called channel for a max of 100 messages (You may change it to whatever you need)
+@client.command(aliases=['purge'])
+async def clear(ctx, amount=11):
+    if (not ctx.author.guild_permissions.manage_messages):
+        await ctx.send('You require the permission: ``Manage Messages``')
+    amount = amount+1
+    if amount > 101:
+        embed_purge=discord.Embed(title="I cannot delete more than 100 messages!", color=0xe303fc)
+        await ctx.send(embed=embed_purge)
+    else:
+        await ctx.channel.purge(limit=amount)
+        embed_purge_sucess=discord.Embed(title="Sucessfully deleted {amount} messages!")
+        await ctx.send(embed=embed_purge_sucess)
+
+#Using ZenQuotes.io API
+@client.command(aliases=['phrase'])
+async def inspire(ctx):
+    quote = get_quote() #Use function get_quote()
+    embed_quote=discord.Embed(title="Inspirational Quote for you!", description=quote, colour=0xe303fc)
+    await ctx.send(embed=embed_quote)
+
+#Uses DadJokes API Wrapper module
+@client.command(aliases=['joke'])
+async def dadjoke(ctx):
+    dadjoke = Dadjoke() #Gather a random Joke from import Dadjoke
+    embed_joke=discord.Embed(title="Random Joke:", description=dadjoke.joke, color=0xe303fc)
+    await ctx.send(embed=embed_joke)
+
+#My community server, you aren't forced to join but I usually give support to new users of the bot
+@client.command(aliases=['community'])
+async def server(ctx):
+    community_embed=discord.Embed(title="Join our community Server!", description="You can join our community server by clicking the title in this embed! - We have a Minecraft Server and a friendly community!", color=0xe303fc, url="https://dsc.gg/drkmines")
+    await ctx.send(embed=community_embed)
+
+#Just mere self-promo about the release, but it would be rad if you kept this lines alone
+@client.command(aliases=['invitebot'])
+async def invite(ctx):
+    embed_invite=discord.Embed(title="Invite the bot", description="Currently Exodius Tools is restricted to this Guild only, in a future however it will be available for all Discord Guilds to be invited", color=0xe303fc)
+    embed_invite.set_author(text="minecon099", icon_url="https://avatars.githubusercontent.com/u/74718722?v=4")
+    embed_invite.add_field(name="Why? - I like this bot and I need it!", value="Despite your valuable interest, this bot won't be availble to everyone to use until we release ourselves in Top.gg and we finish our desired features", inline=False)
+    embed_invite.add_field(name="Do you have any release time?", value="There is no ETA on when will we be 100% complete, but you will know it when you find Exodius Bot on Top.gg page ;)", inline=False)
+    embed_invite.add_field(name="Can I be a testing Guild?", value="We will soon release a testing Guilds program for partenered people with the Bot's owner and we will soon release the bot on a limited quantity of guilds, right now we will see about it :P", inline=False)
+    embed_invite.set_footer(text="Expected ETA: Early 2022")
+    await ctx.send(embed=embed_invite)
+
+#Replace BOTTOKEN with your own token, you can gather it on discord.com/developers/applications
+client.run('BOTTOKEN')
