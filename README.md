@@ -1,24 +1,26 @@
 # ExodiusTools
-The replacement for the old DJtetra which in the end returned to be an unsuccessful project that in the end would remain incomplete, now it is called ExodiusTools, a multipurpose bot that has different functions, like simple commands such as ping pong command or more complex that use aiohttps to send API requests or Cogs that allow you to separate your commands into multiple files that you can load and disable remotely!
+The replacement for the old DJtetra which in the end returned to be an unsuccessful project that in the end would remain incomplete, now it is called ExodiusTools, a multipurpose bot that has different functions, like simple commands such as ping pong command or more complex that use aiohttp to send API requests or Cogs that allow you to separate your commands into multiple files that you can load and disable remotely!
 
 ## What's new:
-### Changelog (v1.1 The Slash-Neko-OOP update):
-- We've added **cogs** to the code, now I've played a bit with the importing settings and after a few more times of trying to get cogs to work and some **help from Nextcord Discord Community** I managed to make a few extensions called "fun.py" and "images.py" which consist in a handful of commands for image posting and other fun tools.
-- We got **slash commands wooooo!** - After a bunch of updates from Nextcord we got the news that it handles Slash commands as fine as water, plus we got 1 example of commands with arguments in our code!
-- We got new commands from nekos.best API - You can now not only get Nekos but also Kitsune and Waifu art, SFW of course, I'm not an internet weirdo!
-- Fixed childish nonsense speech in README.md, yeah I just didn't knew how to write good files to explain this.
+### Changelog (v1.1.2 The Colorful Present bugs update!):
+- Added a "randomcolor" command, with this you can get a totally random generated color in RGB and HEX code, also displayed in the embed's color!
+- Added **presence** module! - Now Exodius Bot can display a custom status with cogs! (Yea I placed that myself, this became a pretty hard job lol)
+- Added **aiohttp** import! - We'll soon rework the API system, you know what that means as well (*Cooldown incoming*)
+- Fixed a bug where "neko", "kitsune" and "waifu" commands would show a smol image instead of the original size (Yup, silly me forgot to change thumbnail to image!)
+- Fixed the "rock" command. Now you can get sweet rock pics, either gifs or just images or recolors I dunno I didn't make the API.
+- 
 
 ### TODO List:
 - Add Slash Commands ✅
   - Re-code old version into Slash Commands ❎
   - Add Slash Commands with arguments ❎
-  - Add Descriptions for arguments ❎
+  - Add Descriptions for arguments ❎ (But sorta completed anyway)
   - Add Cooldown for some commands ❎
   - Add Roleplay Commands ❎
-  - Fix "rock" command ❎
+  - Add Slash Command Categories ❎
+  - Fix "rock" command ✅
 - Add Cogs ✅
-  - Add an option to disable and enable cogs individually ❎
-- Add Essential Files ✅
+  - Add an option to disable and enable cogs individually [EDIT: This will only be available for bot owners, pubilc version will not include this feature.]❎
 
 ## Description:
 ### What is this new thing?
