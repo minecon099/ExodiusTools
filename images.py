@@ -1,5 +1,3 @@
-from multiprocessing import Event
-from unicodedata import category
 from nekosbest import Client
 
 from nextcord import Interaction, slash_command, embeds
@@ -25,7 +23,7 @@ class images(Cog):
 
         #Build the Embed
         NekoEmbed = embeds.Embed(color=0xe303fc, title=f"Imwage Sowuce", url=neko_image.url)
-        NekoEmbed.set_thumbnail(url=neko_image.url)
+        NekoEmbed.set_image(url=neko_image.url)
         NekoEmbed.set_footer(text="Powered by Nekos.best API Wrapper")
 
         await inter.send(embed=NekoEmbed)
@@ -41,7 +39,7 @@ class images(Cog):
     
         #Build the Embed
         WaifuEmbed = embeds.Embed(color=0xe303fc, title=f"Image Source", url=waifu_image.url)
-        WaifuEmbed.set_thumbnail(url=waifu_image.url)
+        WaifuEmbed.set_image(url=waifu_image.url)
         WaifuEmbed.set_footer(text="Powered by Nekos.best API Wrapper")
     
         await inter.send(embed=WaifuEmbed)
@@ -57,7 +55,7 @@ class images(Cog):
     
         #Build the Embed
         KitsuneEmbed = embeds.Embed(color=0xe303fc, title=f"Image source", url=kitsune_image.url)
-        KitsuneEmbed.set_thumbnail(url=kitsune_image.url)
+        KitsuneEmbed.set_image(url=kitsune_image.url)
         KitsuneEmbed.set_footer(text="Powered by Nekos.best API Wrapper")
     
         await inter.send(embed=KitsuneEmbed)
