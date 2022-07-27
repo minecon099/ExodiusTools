@@ -8,7 +8,6 @@ The replacement for the old DJtetra which in the end returned to be an unsuccess
 - Added **aiohttp** import! - We'll soon rework the API system, you know what that means as well (*Cooldown incoming*)
 - Fixed a bug where "neko", "kitsune" and "waifu" commands would show a smol image instead of the original size (Yup, silly me forgot to change thumbnail to image!)
 - Fixed the "rock" command. Now you can get sweet rock pics, either gifs or just images or recolors I dunno I didn't make the API.
-- 
 
 ### TODO List:
 - Add Slash Commands ✅
