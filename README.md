@@ -10,16 +10,16 @@ The replacement for the old DJtetra which in the end returned to be an unsuccess
 - Fixed the "rock" command. Now you can get sweet rock pics, either gifs or just images or recolors I dunno I didn't make the API.
 
 ### TODO List:
-- Add Slash Commands ✅
-  - Re-code old version into Slash Commands ❎
-  - Add Slash Commands with arguments ❎
-  - Add Descriptions for arguments ❎ (But sorta completed anyway)
-  - Add Cooldown for some commands ❎
-  - Add Roleplay Commands ❎
-  - Add Slash Command Categories ❎
-  - Fix "rock" command ✅
-- Add Cogs ✅
-  - Add an option to disable and enable cogs individually [EDIT: This will only be available for bot owners, pubilc version will not include this feature.]❎
+[x] **Add Slash Commands**
+  [] Re-code old version into Slash Commands 
+  [x] Add Slash Commands with arguments 
+  [] Add Descriptions for arguments  (But sorta completed anyway)
+  [] Add Cooldown for some commands 
+  [] Add Roleplay Commands 
+  [] Add Slash Command Categories 
+  [x] Fix "rock" command 
+[x] **Add Cogs** 
+  [] Add an option to disable and enable cogs individually [EDIT: This will only be available for bot owners, pubilc version will not include this feature.]❎
 
 ## Description:
 ### What is this new thing?
