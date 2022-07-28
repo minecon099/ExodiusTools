@@ -19,7 +19,7 @@ The replacement for the old DJtetra which in the end returned to be an unsuccess
   - [ ] Add Slash Command Categories 
   - [x] Fix "rock" command 
 - [x] **Add Cogs** 
-  - [ ] Add an option to disable and enable cogs individually [EDIT: This will only be available for bot owners, pubilc version will not include this feature.]❎
+  - [ ] Add an option to disable and enable cogs individually [EDIT: This will only be available for bot owners, pubilc version will not include this feature]
 
 ## Description:
 ### What is this new thing?
